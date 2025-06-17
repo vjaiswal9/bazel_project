@@ -1,20 +1,22 @@
-cc_library(
-    name = "helper_lib",
-    srcs = ["helper.cpp"],
-    hdrs = ["helper.h"],
-    visibility = ["//visibility:public"],
-)
+# Root BUILD for convenient aliases
+package(default_visibility = ["//visibility:public"])
 
-cc_binary(
+alias(
     name = "main_cpp",
-    srcs = ["main.cpp"],
-    deps = [":helper_lib"],
-    data = ["//data:config_data"],
+    actual = "//main:main_cpp",
 )
 
-py_binary(
+alias(
     name = "main_py",
-    srcs = ["main.py"],
-    deps = [],
+    actual = "//main:main_py",
 )
 
+alias(
+    name = "helper_lib",
+    actual = "//main:helper_lib",
+)
+
+alias(
+    name = "hello_script",
+    actual = "//scripts:hello_script",
+)
